@@ -18,3 +18,7 @@ export default function MagicButton(props: ButtonProps) {
     </Button>
   );
 }
+
+// console.log();
+
+//
