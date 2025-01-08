@@ -1,11 +1,11 @@
 import React from 'react';
-import { getSummaryStats } from '@/lib/api';
+import { getSummaryStats, SummaryStats } from '@/lib/api';
 import StatCard, { StatCardType } from '@/app/components/stat-card';
 import Link from 'next/link';
 
 export interface PageProps {}
 
-const labelByStat = {
+const labelByStat: Record<keyof SummaryStats, string> = {
   promotions: 'Total promotions',
   categories: 'Total categories',
   newCompanies: 'New companies',
@@ -14,16 +14,16 @@ const labelByStat = {
 
 const Page = async () => {
   const data = await getSummaryStats();
-  console.log(data); // Для отладки - уберите в продакшене
+  console.log(data);
 
   return (
     <div className="grid grid-cols-12 gap-5">
-      {Object.keys(data).map(key => (
+      {(Object.keys(labelByStat) as (keyof SummaryStats)[]).map(key => (
         <Link href={`/dashboard/${key}`} key={key} className="col-span-3">
           <StatCard
             type={StatCardType.Gradient}
             label={labelByStat[key]}
-            counter={data[key] || 0} // Значение по умолчанию, если не определено
+            counter={data[key] || 0}
           />
         </Link>
       ))}

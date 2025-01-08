@@ -50,18 +50,15 @@ export interface Promotion {
 const PROJECT_TOKEN = process.env.NEXT_PUBLIC_PROJECT_TOKEN;
 const buildUrl = (...paths: string[]) =>
   `https://${PROJECT_TOKEN}.mockapi.io/api/v1/${paths.join('/')}`;
-
 const stringifyQueryParams = (params: Record<string, string>) =>
   new URLSearchParams(params).toString();
-
 const sendRequest = async <T>(url: string, init?: RequestInit) => {
   const res = await fetch(url, init);
   if (!res.ok) {
     throw new Error(await res.text());
   }
-  return (await res.json()) as T; // Закрывающая фигурная скобка для sendRequest была здесь, я её добавил ниже
+  return (await res.json()) as T;
 };
-
 export const getSummaryStats = (init?: RequestInit) => {
   return sendRequest<SummaryStats>(buildUrl('summary-stats', '1'), init);
 };
@@ -74,9 +71,11 @@ export const getCountries = (init?: RequestInit) => {
 export const getCategories = (init?: RequestInit) => {
   return sendRequest<Category[]>(buildUrl('categories'), init);
 };
+
 export const getCompanies = (init?: RequestInit) => {
   return sendRequest<Company[]>(buildUrl('companies'), init);
 };
+
 export const getCompany = (id: string, init?: RequestInit) => {
   return sendRequest<Company>(buildUrl('companies', id), init);
 };
