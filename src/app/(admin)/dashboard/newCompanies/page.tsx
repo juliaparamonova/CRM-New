@@ -8,6 +8,7 @@ export default function Page({}: PageProps) {
     <>
       <Header>Dashboard / New companies</Header>
       <div>Some additional info</div>
+      <div>Some additional info</div>
     </>
   );
 }
