@@ -1,4 +1,4 @@
-// export interface PageProps {}
-// export default function Page({}: PageProps) {
-//   return null;
-// }
+export interface PageProps {}
+export default function Page({}: PageProps) {
+  return null;
+}
